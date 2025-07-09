@@ -10,7 +10,7 @@ import java.util.List;
 public interface PostRepository extends MongoRepository<Post, String> {
     List<Post> findByAuthor(String author);
 
-    List<Post> findByTagsIn(List<String> tags);
+    List<Post> findByTagsIn(String[] tags);
 
     List<Post> findByDateCreatedBetween(LocalDateTime from, LocalDateTime to);
 }

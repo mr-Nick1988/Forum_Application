@@ -67,12 +67,13 @@ public class ForumService {
     }
 
     public List<PostResponseDto> findPostsByPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
-        return postRepository.findByDateCreatedBetween(dateFrom, dateTo).stream()
+        return postRepository.findByDateCreatedBetween(dateFrom, dateTo.plusDays(1))
+                .stream()
                 .map(post -> modelMapper.map(post, PostResponseDto.class))
                 .toList();
     }
 
-    public List<PostResponseDto> findPostsByTags(List<String>tags){
+    public List<PostResponseDto> findPostsByTags(String[] tags) {
         return postRepository.findByTagsIn(tags).stream()
                 .map(post -> modelMapper.map(post, PostResponseDto.class))
                 .toList();
