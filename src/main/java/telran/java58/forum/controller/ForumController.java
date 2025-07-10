@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import telran.java58.forum.dto.request.CreateCommentRequestDto;
 import telran.java58.forum.dto.request.CreatePostRequestDto;
-import telran.java58.forum.dto.response.CommentResponseDto;
 import telran.java58.forum.dto.response.PostResponseDto;
 import telran.java58.forum.service.ForumService;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -38,8 +36,8 @@ public class ForumController {
     }
 
     @PatchMapping("/post/{postId}/comment/{commenter}")
-    public PostResponseDto addComment(@PathVariable String postId, @PathVariable String commenter, @RequestBody CommentResponseDto commentDto) {
-        return forumService.createPost(postId, commenter, commentDto.getMessage());
+    public PostResponseDto addComment(@PathVariable String postId, @PathVariable String commenter, @RequestBody CreateCommentRequestDto commentDto) {
+        return forumService.createComment(postId, commenter, commentDto.getMessage());
     }
 
     @GetMapping("/posts/author/{user}")

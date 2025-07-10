@@ -46,7 +46,7 @@ public class ForumService {
         postRepository.save(post);
     }
 
-    public PostResponseDto createPost(String postId, String commenter, String message) {
+    public PostResponseDto createComment(String postId, String commenter, String message) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(PostNotFoundException::new);
         Comment comment = new Comment();
